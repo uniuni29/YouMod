@@ -639,6 +639,7 @@ static BOOL isDarkMode(UIView *view) {
     %orig;
     if (IS_ENABLED(HideCastButtonPlayer)) self.playbackRouteButton.hidden = YES;    
 }
+- (BOOL)isFullscreenActionsVisible { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 %end
 
 // No Endscreen Cards
@@ -653,6 +654,8 @@ static BOOL isDarkMode(UIView *view) {
 - (BOOL)allowDoubleTapToSeekGestureRecognizer { return IS_ENABLED(DisablesDoubleTap) ? NO : %orig; }
 // Disable long hold
 - (BOOL)allowLongPressGestureRecognizerInView:(id)arg { return IS_ENABLED(DisablesLongHold) ? NO : %orig; }
+// Disables fullscreen actions
+- (BOOL)isFullscreenActionsEnabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 %end
 
 // YTNoPaidPromo (https://github.com/PoomSmart/YTNoPaidPromo)
@@ -708,11 +711,15 @@ static BOOL isDarkMode(UIView *view) {
 %end
 
 // Disable Fullscreen Actions
+/*
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 - (void)setEnabled:(BOOL)arg1 { IS_ENABLED(HideFullAction) ? %orig(NO) : %orig; }
 - (CGSize)sizeThatFits:(CGSize)size { return IS_ENABLED(HideFullAction) ? CGSizeZero : %orig; }
 %end
+*/
+
+YTMainAppVideoPlayerOverlayViewController
 
 // Disable Autoplay 
 %hook YTPlaybackConfig
