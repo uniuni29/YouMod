@@ -218,6 +218,10 @@ typedef NS_ENUM(NSUInteger, GestureSection) {
 - (void)restoreYouModDefaults;
 @end
 
+// Hide fullscreen buttons
+@interface YTFullscreenActionsView : UIView
+@end
+
 // Player Gestures - @bhackel (YTLitePlus)
 @interface YTFineScrubberFilmstripView : UIView
 @end
