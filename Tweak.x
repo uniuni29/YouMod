@@ -658,6 +658,13 @@ static BOOL isDarkMode(UIView *view) {
 - (BOOL)allowLongPressGestureRecognizerInView:(id)arg { return IS_ENABLED(DisablesLongHold) ? NO : %orig; }
 // Disables fullscreen actions
 - (BOOL)isFullscreenActionsEnabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
+// this looks good though
+- (void)hideFullscreenActions:(BOOL)arg { %orig(YES); }
+%end
+
+%hook YTPlayerBarController
+// Disables fullscreen actions
+- (BOOL)isFullscreenActionsEnabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 %end
 
 // YTNoPaidPromo (https://github.com/PoomSmart/YTNoPaidPromo)
@@ -713,13 +720,11 @@ static BOOL isDarkMode(UIView *view) {
 %end
 
 // Disable Fullscreen Actions
-/*
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 - (void)setEnabled:(BOOL)arg1 { IS_ENABLED(HideFullAction) ? %orig(NO) : %orig; }
 - (CGSize)sizeThatFits:(CGSize)size { return IS_ENABLED(HideFullAction) ? CGSizeZero : %orig; }
 %end
-*/
 
 // Disable Autoplay 
 %hook YTPlaybackConfig
