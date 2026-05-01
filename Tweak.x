@@ -711,9 +711,7 @@ static BOOL isDarkMode(UIView *view) {
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return IS_ENABLED(HideFullAction) ? NO : %orig; }
 - (void)setEnabled:(BOOL)arg1 { IS_ENABLED(HideFullAction) ? %orig(NO) : %orig; }
-- (id)initWithElementRenderer:(id)arg1 parentResponder:(id)arg2 { return nil; }
-- (id)initWithElementView:(id)arg { return nil; }
-- (void)layoutSubviews {}
+- (CGSize)sizeThatFits:(CGSize)size { return IS_ENABLED(HideFullAction) ? CGSizeZero : %orig; }
 %end
 
 // Disable Autoplay 
