@@ -669,6 +669,13 @@ static BOOL isDarkMode(UIView *view) {
     }
     if (IS_ENABLED(HideCastButtonPlayer)) self.playbackRouteButton.hidden = YES;    
 }
+- (void)setFullscreenActionsView:(UIView *)view {
+    if (IS_ENABLED(HideFullAction)) {
+        %orig(nil); // Tell the controller there is no view to manage
+    } else {
+        %orig;
+    }
+}
 %end
 
 // No Endscreen Cards
